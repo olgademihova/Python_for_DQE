@@ -24,6 +24,12 @@ print(dictList)  # see the result
 # if key is only in one dict - take it as is,
 # example: {'a_1': 5, 'b': 7, 'c': 35, 'g_2': 42}
 
-# dict_merged = {}
-# for
 
+dict_merged = {}  # создаю новый пустой словарь
+for d in dictList:  # запускаю цикл по каждому элементу из словаря
+    for k, v in d.items():  # запускаю под-цикл по ключу и значению
+        if k in dict_merged:  # если ключ в словаре
+            dict_merged[k] = max(dict_merged[k], v) #ищу максимальное значение по ключу, если ключ повторяется
+        else:
+            dict_merged[k] = v  # иначе вывожу ключ-значение as-is
+print(dict_merged) # смотрю результат
