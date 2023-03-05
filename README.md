@@ -1,5 +1,5 @@
 # Python_for_DQE
-Description
+Description \n
 With this program Junior/Middle Data Quality Engineers can understand:
 basics of Python programming language,
 how to use OOP in Python,
