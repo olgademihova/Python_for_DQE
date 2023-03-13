@@ -2,6 +2,8 @@ import datetime
 import os
 from locale import normalize
 import random
+import json
+import module_7 as m7
 
 
 class PrintMessage:
@@ -13,6 +15,9 @@ class PrintMessage:
         ptf = open("Module6_paste.txt", "a")      # open file to add
         print(self.message, file=ptf)
         ptf.close()                            # close file
+
+        with open("Module6_paste.txt", "r") as file2:
+            m7.update_counts(file2)
 
 
 class News:
