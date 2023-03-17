@@ -9,6 +9,17 @@ class File:
     def __init__(self, output_file_name):
         self.output_file_name = output_file_name
 
+    def read_file(self, file_name):
+        if '.txt' in file_name:
+            with open(file_name, "r", encoding='utf-8') as file:
+                f_contents = file.readlines()
+        elif '.json' in file_name:
+            with open(file_name, "r") as file:
+                f_contents = json.load(file)
+        elif '.xml' in file_name:
+            pass
+        return f_contents
+
     def get_file_content(self):
         original_path = os.path.dirname(os.path.realpath(__file__))
         print(f'Your default directory is "{os.getcwd()}"')
@@ -20,14 +31,7 @@ class File:
                 while True:
                     try:
                         file_name = input('Enter the file name with its format: ')
-                        if '.txt' in file_name:
-                            with open(file_name, "r", encoding='utf-8') as file:
-                                f_contents = file.readlines()
-                        elif '.json' in file_name:
-                            with open(file_name, "r") as file:
-                                f_contents = json.load(file)
-                        elif '.xml' in file_name:
-                            pass
+                        f_contents = self.read_file(file_name)
                         print('Okay, such file exists')
                         path_for_remove = str(file_name)
                         is_true = False

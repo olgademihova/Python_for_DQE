@@ -18,9 +18,9 @@ class JSONInput:
         for record in self.records:
             if record["type"] == 'news':
                 print("News", record)
-                text = record["type"]["text"]
-                loc = record["type"]["location"]
-                dt = record["type"]["date"]
+                text = record["text"]
+                loc = record["location"]
+                dt = record["date"]
                 news_record = f"News ----------------------------\n" \
                               f"{text}\n"\
                               f"{loc}, {dt}\n"\
@@ -29,9 +29,9 @@ class JSONInput:
 
             elif record["type"] == 'adv':
                 print("Advertising", record)
-                text = record["type"]["text"]
-                exp_dt = record["type"]["expired_date"]
-                days_l = record["type"]["days_left"]
+                text = record["text"]
+                exp_dt = record["expired_date"]
+                days_l = record["days_left"]
                 news_record = f'Private Ad -----------------------\n' \
                               f'{text}\n' \
                               f'Actual until: {exp_dt}, {days_l} days left\n' \
@@ -40,8 +40,8 @@ class JSONInput:
 
             elif record["type"] == 'guess':
                 print("Guess", record)
-                text = record["type"]["text"]
-                ans = record["type"]["answer"]
+                text = record["text"]
+                ans = record["answer"]
                 news_record = f'Ask me about your future? --------\n' \
                               f'Your question - "{text}",\n' \
                               f'Witch\'s answer will be - {ans}\n' \
