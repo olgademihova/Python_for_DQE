@@ -1,7 +1,7 @@
 from modules_5_6 import PrintMessage, News, Advertising, Guess, add_news, add_adv, add_guess
 from module_json import JSONInput
 import os
-from module_text import File, TextFile(File)
+from module_text import File, TextFile
 
 
 # Function for main menu call
@@ -40,6 +40,7 @@ if __name__ == "__main__":
             # print(f'This file {path_for_remove} will be removed now\n')
             # os.remove(path_for_remove)
         elif flag == '5':
+            JSONInput('Module6_paste.txt').parse_file()
             pass
         elif flag == '6':
             pass

@@ -1,0 +1,19 @@
+{
+    "records": [
+        {   "type": "news",
+            "text": "text",
+            "location": "location"
+			"date": "20/03/2023"
+        },
+        {   "type": "adv",
+            "text": "text",
+            "expired_date": "14/04/2023"
+			"days_left": "7"
+        },
+      {
+            "type": "guess",
+            "text": "Yes or no?"
+			"answer": "Yes"
+      }
+    ]
+}

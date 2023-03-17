@@ -1,0 +1,17 @@
+<records>
+    <type name="news">
+        <text>text</text>>
+        <location>location</location>
+        <date>20/03/2023</date>
+    </type>
+    <type name="adv">
+        <text>text</text>>
+        <expired_date>15/05/2023</expired_date>
+        <days_left>20</days_left>
+    </type>
+    <type name="guess">
+        <text>Yes or no?</text>>
+        <answer>Yes</answer>
+    </type>
+</records>
+

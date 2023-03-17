@@ -9,7 +9,7 @@ class File:
     def __init__(self, output_file_name):
         self.output_file_name = output_file_name
 
-    def get_file_path(self):
+    def get_file_content(self):
         original_path = os.path.dirname(os.path.realpath(__file__))
         print(f'Your default directory is "{os.getcwd()}"')
         is_true = True
@@ -20,8 +20,14 @@ class File:
                 while True:
                     try:
                         file_name = input('Enter the file name with its format: ')
-                        with open(file_name, "r", encoding='utf-8') as source:
-                            f_contents = source.readlines()
+                        if '.txt' in file_name:
+                            with open(file_name, "r", encoding='utf-8') as file:
+                                f_contents = file.readlines()
+                        elif '.json' in file_name:
+                            with open(file_name, "r") as file:
+                                f_contents = json.load(file)
+                        elif '.xml' in file_name:
+                            pass
                         print('Okay, such file exists')
                         path_for_remove = str(file_name)
                         is_true = False
@@ -69,7 +75,7 @@ class TextFile(File):
         super().__init__(output_file_name)
 
     def write_to_file(self):
-        f_contents, path_for_remove = get_file_content()
+        f_contents, path_for_remove = self.get_file_content()
         num_records = int(input("Enter records num:\n"))
         count = 0
         for i, line in enumerate(f_contents):
