@@ -1,7 +1,5 @@
-from modules_5_6 import PrintMessage, News, Advertising, Guess, add_news, add_adv, add_guess
-from module_json import JSONInput
-import os
-from module_text import File, TextFile
+from manual_input import add_news, add_adv, add_guess
+from file_input import TextFile, JSONFile, XMLFile
 
 
 # Function for main menu call
@@ -19,20 +17,22 @@ def menu():
 
 # ask a user what data he wants to print and then call a class and insert the data into file using inserting method
 if __name__ == "__main__":
+    target_file_name = input("Please specify target file name (ex. news_feed.txt): ")  #new line
     while True:
         menu()
         flag = input('Choose the appropriate number: ')
         if flag == '1':
-            add_news()
+            add_news(target_file_name)
         elif flag == '2':
-            add_adv()
+            add_adv(target_file_name)
         elif flag == '3':
-            add_guess()
+            add_guess(target_file_name)
         elif flag == '4':
+            TextFile(target_file_name).parse_file()
             #sol 1
             #FromAnotherSource().read_file('Module6_paste.txt')
             # sol 2
-            TextFile('Module6_paste.txt').write_to_file()
+            # TextFile('Module6_paste.txt').write_to_file()
 
             # f_contents_new, path_for_remove = FromAnotherSource().read_file()
             # with open("Module6_paste.txt", "a", encoding='utf-8') as file:
@@ -40,10 +40,10 @@ if __name__ == "__main__":
             # print(f'This file {path_for_remove} will be removed now\n')
             # os.remove(path_for_remove)
         elif flag == '5':
-            JSONInput('Module6_paste.txt').parse_file()
-            pass
+            JSONFile(target_file_name).parse_file()
+            # JSONInput('Module6_paste.txt').parse_file()
         elif flag == '6':
-            pass
+            XMLFile(target_file_name).parse_file()
         elif flag == '7':
             pass
         elif flag == '8':

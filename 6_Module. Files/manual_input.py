@@ -1,54 +1,57 @@
 import datetime
-import os
 from locale import normalize
 import random
-import module_7 as m7
+import text_statistic as ts
 
 
 class PrintMessage:
-    def __init__(self, message):
+    def __init__(self, message, file_name):
         self.message = message
+        self.file_name = file_name  # new line
 
     # create a method which inserts the formatted text into text file
     def print_message(self):
-        ptf = open("Module6_paste.txt", "a")      # open file to add
+        ptf = open(self.file_name, "a")      # open file to add
         print(self.message, file=ptf)
         ptf.close()                            # close file
 
-        with open("Module6_paste.txt", "r") as file2:
-            m7.update_counts(file2)
+        with open(self.file_name, "r") as file2:
+            ts.update_counts(file2)
 
 
 class News:
-    def __init__(self, news_msg, location):
+    def __init__(self, news_msg, location, file_name):
         self.news_msg = news_msg               # news_info
         self.location = location               # location where it has happened
+        self.file_name = file_name  # new line
 
     # create a method which creates a news (text, city, time)
     def news_message(self):
         message = f'News ----------------------------\n{self.news_msg}\n{self.location},' \
                   f'{datetime.datetime.now().strftime("%d/%m/%Y %H:%M")}\n' \
                   f'---------------------------------\n\n'
-        PrintMessage(normalize(message)).print_message()
+        PrintMessage(normalize(message), self.file_name).print_message()  # add file_name
 
 
 class Advertising:
-    def __init__(self, adv_message, actual_until=None):
+    def __init__(self, adv_message, expired_dt, file_name):
         self.adv_message = adv_message
-        self.actual_until = actual_until
+        self.file_name = file_name  # new line
+        self.expired_dt = expired_dt
 
     # create a method which creates an advertisement (text, expiration day, how many days left)
     def advertising(self):
         message = f'Private Ad -----------------------\n{self.adv_message}\n' \
-                  f'Actual until: {self.actual_until},' \
-                  f'{(datetime.datetime.strptime(self.actual_until, "%d/%m/%Y") - datetime.datetime.now()).days} days left\n' \
+                  f'Actual until: {self.expired_dt},' \
+                  f'{(datetime.datetime.strptime(self.expired_dt, "%d/%m/%Y") - datetime.datetime.now()).days} days left\n' \
                   f'----------------------------------\n\n'
-        PrintMessage(normalize(message)).print_message()
+        PrintMessage(normalize(message), self.file_name).print_message()  # add file_name
 
 
 class Guess:
-    def __init__(self, guessing):
+    def __init__(self, guessing, file_name):
         self.guessing = guessing
+        self.file_name = file_name  # new line
 
     # create an interactive method with indicating possibility using random elements from list
     def ask_future(self):
@@ -60,27 +63,32 @@ class Guess:
                      f'Your question - "{self.guessing}",\n' \
                      f'Witch\'s answer will be - {test_list[random_test_list]}\n' \
                      f'----------------------------------\n\n'
-        PrintMessage(normalize(prediction)).print_message()
+        PrintMessage(normalize(prediction), self.file_name).print_message()  # add file_name
 
 
-def add_news():
-    news = News(input('Please enter news text:\n'),
-                input('Please enter location:\n'))
-    news_mess = news
-    news_mess.news_message()
+def add_news(file_name):  # add file_name
+    text = input('Please enter news text:\n')
+    location = input('Please enter location:\n')
+    news = News(text, location, file_name)
+    news.news_message()
 
 
-def add_adv():
-    advng = Advertising(input('Please enter advertisement text:\n'),
-                        input('Please enter expire date in the format dd/mm/yyyy:\n'))
-    adv_message = advng
-    adv_message.advertising()
+def add_adv(file_name):  # add file_name
+    text = input('Please enter advertisement text:\n')
+    exp_dt = input('Please enter expire date in the format dd/mm/yyyy:\n')
+    adv = Advertising(text, exp_dt, file_name)
+    adv.advertising()
 
 
-def add_guess():
-    guessing = Guess(input('Ask me about your near future:\n'))
-    question_divination = guessing
-    question_divination.ask_future()
+def add_guess(file_name):  # add file_name
+    guessing = input('Ask me about your near future:\n')
+    guess = Guess(guessing, file_name)
+    guess.ask_future()
+
+
+    # guessing = Guess(input('Ask me about your near future:\n'))
+    # question_divination = guessing
+    # question_divination.ask_future()
 
 
 

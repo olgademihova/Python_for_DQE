@@ -1,6 +1,5 @@
 import re
 import csv
-import string
 
 
 def word_count(str):
