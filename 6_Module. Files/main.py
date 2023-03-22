@@ -17,18 +17,18 @@ def menu():
 
 # ask a user what data he wants to print and then call a class and insert the data into file using inserting method
 if __name__ == "__main__":
-    target_file_name = input("Please specify target file name (ex. news_feed.txt): ")  #new line
+    target_file_name = input("Please specify target file name (ex. news_feed.txt): ")   # input target file name
     while True:
         menu()
         flag = input('Choose the appropriate number: ')
         if flag == '1':
-            add_news(target_file_name)
+            add_news(target_file_name)  # call the function of News for input data
         elif flag == '2':
-            add_adv(target_file_name)
+            add_adv(target_file_name)  # call the function of Advertising for input data
         elif flag == '3':
-            add_guess(target_file_name)
+            add_guess(target_file_name)  # call the function of Guess for input data
         elif flag == '4':
-            TextFile(target_file_name).parse_file()
+            TextFile(target_file_name).parse_file()  # call the method of TextFile class to parse data
             #sol 1
             #FromAnotherSource().read_file('Module6_paste.txt')
             # sol 2
@@ -40,14 +40,14 @@ if __name__ == "__main__":
             # print(f'This file {path_for_remove} will be removed now\n')
             # os.remove(path_for_remove)
         elif flag == '5':
-            JSONFile(target_file_name).parse_file()
+            JSONFile(target_file_name).parse_file()  # call the method of JSONFile class to parse data
             # JSONInput('Module6_paste.txt').parse_file()
         elif flag == '6':
-            XMLFile(target_file_name).parse_file()
+            XMLFile(target_file_name).parse_file()  # call the method of XMLFile class to parse data
         elif flag == '7':
             pass
         elif flag == '8':
-            print('That is all. Thank you. Goodbye.')
+            print('That is all. Thank you. Goodbye.')   # exit of program
             break
         else:
             print('Try again')
