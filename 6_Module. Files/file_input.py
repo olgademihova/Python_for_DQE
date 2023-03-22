@@ -23,7 +23,7 @@ class File:
         elif '.xml' in file_name:   # NEED TO ADD!!
             with open(file_name, "r") as read_file:
                 f_contents = ET.parse(read_file)   # open XML file to read data
-                root = f_contents.getroot() #?????????
+                #root = f_contents.getroot() #?????????
             pass
         return f_contents
 
@@ -119,7 +119,7 @@ class JSONFile(File):
         self.records = f_contents["records"]
         for record in self.records:
             if record["type"] == 'news':
-                print("News", record)
+                #print("News", record)
                 text = record["text"]
                 loc = record["location"]
                 dt = record["date"]
@@ -130,7 +130,7 @@ class JSONFile(File):
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print news text info to output file
 
             elif record["type"] == 'adv':
-                print("Advertising", record)
+                #print("Advertising", record)
                 text = record["text"]
                 exp_dt = record["expired_date"]
                 days_l = record["days_left"]
@@ -141,7 +141,7 @@ class JSONFile(File):
                 PrintMessage(normalize(news_record), self.output_file_name).print_message() # print adv text info to output
 
             elif record["type"] == 'guess':
-                print("Guess", record)
+                #print("Guess", record)
                 text = record["text"]
                 ans = record["answer"]
                 news_record = f'Ask me about your future? --------\n' \
@@ -149,6 +149,9 @@ class JSONFile(File):
                               f'Witch\'s answer will be - {ans}\n' \
                               f'----------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message() # print guess text info to output
+
+        print(f'This file {path_for_remove} will be removed now\n')
+        os.remove(path_for_remove)  # procecced file is removed
 
 
 # create child class XMLFile
@@ -160,47 +163,48 @@ class XMLFile(File):
 # create method that parse XML file
     def parse_file(self):
         f_contents, path_for_remove = self.get_file_content()
-        #root = self.get_data()
-        for element in root.iter('type'):
-            if element.get('name') == 'news':  # получить аттрибут
-                # print(element.attrib)
-                for record in root.findall('type'):
-                    text = record.find('text').text
-                    loc = record.find('location').text
-                    dt = record.find('date').text
-                    print(text)  # увидим текст в тэгах для NEWS!!!!!!!
-                    news_record = f"News ----------------------------\n" \
-                                  f"{text}\n" \
-                                  f"{loc}, {dt}\n" \
-                                  f'---------------------------------\n\n'
-                    PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print news text info to output
+        root = f_contents.getroot()
+        for record in root.findall('type'):
+            if record.get('name') == 'news':
+                # print(record)
+                text = record.find('text').text
+                # print(text)
+                loc = record.find('location').text
+                # print(loc)
+                dt = record.find('date').text
+                # print(dt)  # увидим текст в тэгах для NEWS!!!!!!!
+                news_record = f"News ----------------------------\n" \
+                              f"{text}\n" \
+                              f"{loc}, {dt}\n" \
+                              f'---------------------------------\n\n'
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()
 
-            elif element.get('name') == 'adv':
-                # print(element.attrib)
-                for record in root.findall('type'):
-                    text = record.find('text').text
-                    exp_dt = record.find('expired_date').text
-                    days_l = record.find('days_left').text
-                    # print(text.text)  # увидим текст в тэгах для ADV!!!!!!!
-                    news_record = f'Private Ad -----------------------\n' \
-                                  f'{text}\n' \
-                                  f'Actual until: {exp_dt}, {days_l} days left\n' \
-                                  f'----------------------------------\n\n'
-                    PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print adv text info to output
+            elif record.get('name') == 'adv':
+                text = record.find('text').text
+                # print(text)
+                exp_dt = record.find('expired_date').text
+                # print(exp_dt)
+                days_l = record.find('days_left').text
+                # print(days_l)  # увидим текст в тэгах для ADV!!!!!!!
+                news_record = f'Private Ad -----------------------\n' \
+                              f'{text}\n' \
+                              f'Actual until: {exp_dt}, {days_l} days left\n' \
+                              f'----------------------------------\n\n'
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()
 
-            elif element.get('name') == 'guess':
-                # print(element.attrib)
-                for record in root.findall('type'):
-                    text = record.find('text').text
-                    ans = record.find('answer').text
-                    # print(text.text)  # увидим текст в тэгах для GUESS!!!!!!!
-                    news_record = f'Ask me about your future? --------\n' \
-                                  f'Your question - "{text}",\n' \
-                                  f'Witch\'s answer will be - {ans}\n' \
-                                  f'----------------------------------\n\n'
-                    PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print guess text info to output
+            elif record.get('name') == 'guess':
+                text = record.find('text').text
+                # print(text)
+                ans = record.find('answer').text
+                # print(ans)  # увидим текст в тэгах для GUESS!!!!!!!
+                news_record = f'Ask me about your future? --------\n' \
+                              f'Your question - "{text}",\n' \
+                              f'Witch\'s answer will be - {ans}\n' \
+                              f'----------------------------------\n\n'
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()
 
-
+        print(f'This file {path_for_remove} will be removed now\n')
+        os.remove(path_for_remove)  # procecced file is removed
 
 
 

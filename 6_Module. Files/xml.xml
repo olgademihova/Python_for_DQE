@@ -1,7 +1,7 @@
 <records>
     <type name="news">
         <text>text</text>>
-        <location>location</location>
+        <location>Minsk</location>
         <date>20/03/2023</date>
     </type>
     <type name="adv">
