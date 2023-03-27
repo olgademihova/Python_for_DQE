@@ -1,18 +1,18 @@
 {
     "records": [
         {   "type": "news",
-            "text": "Something happened",
+            "text": "Something happened (JSON)",
             "location": "Minsk",
             "date": "20/03/2023"
         },
         {   "type": "adv",
-            "text": "Sell a bike",
+            "text": "Sell a bike (JSON)",
             "expired_date": "14/04/2023",
             "days_left": "7"
         },
       {
             "type": "guess",
-            "text": "Yes or no?",
+            "text": "Yes or no? (JSON)",
             "answer": "Yes"
       }
     ]

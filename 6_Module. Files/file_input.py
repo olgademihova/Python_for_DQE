@@ -23,10 +23,7 @@ class File:
         elif '.xml' in file_name:   # NEED TO ADD!!
             with open(file_name, "r") as read_file:
                 f_contents = ET.parse(read_file)   # open XML file to read data
-                #root = f_contents.getroot() #?????????
-            pass
         return f_contents
-
 
 # create method to get file content from file
     def get_file_content(self):
@@ -95,7 +92,7 @@ class TextFile(File):
         count = 0  # count of rows
         f_contents_new = ""   #new content
         for i, line in enumerate(f_contents): # create a loop
-            if line == '\n': # add condition with new line
+            if line == '\n':  # add condition with new line
                 count += 1  # add 1
                 if count == 2 * num_records:
                     f_contents_new = f_contents[:i + 1]
