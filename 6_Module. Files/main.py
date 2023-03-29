@@ -1,5 +1,6 @@
 from manual_input import add_news, add_adv, add_guess
 from file_input import TextFile, JSONFile, XMLFile
+# from database import DB
 
 
 # Function for main menu call
@@ -11,8 +12,7 @@ def menu():
           '4 - Add data from TEXT file',
           '5 - Add data from JSON file',
           '6 - Add data from XML file',
-          '7 - Add data from Database',
-          '8 - Exit', sep='\n')
+          '7 - Exit', sep='\n')
 
 
 # ask a user what data he wants to print and then call a class and insert the data into file using inserting method
@@ -45,8 +45,6 @@ if __name__ == "__main__":
         elif flag == '6':
             XMLFile(target_file_name).parse_file()  # call the method of XMLFile class to parse data
         elif flag == '7':
-            pass
-        elif flag == '8':
             print('That is all. Thank you. Goodbye.')   # exit of program
             break
         else:

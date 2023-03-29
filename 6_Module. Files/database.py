@@ -7,6 +7,19 @@ class DB:
         with sqlite3.connect(database_name) as self.conn:
             self.cur = self.conn.cursor()
 
+    def save_news_in_db(self, news_desc_text, news_loc_text, news_date):
+        #dbcon = DB('10test.db')
+        self.create('news', 'description text', 'location text', 'date_news date')  # call the create method
+        self.insert_news(news_desc_text, news_loc_text, news_date)  # call the insert_news method
+
+    def save_adv_in_db(self, adv_desc_text, adv_exp_date, adv_days_left):
+        self.create('advertising', 'description text', 'exp_date date', 'days_left real')  # call the create method
+        self.insert_adv(adv_desc_text, adv_exp_date, adv_days_left)  # call the insert_adv method
+
+    def save_guess_in_db(self, guess_ask, guess_ans):
+        self.create_guess('guess', 'question text', 'answer text')  # call the create method
+        self.insert_guess(guess_ask, guess_ans)  # call the insert_guess method
+
     def create(self, table_name, field1, field2, field3):
         self.cur.execute(f'CREATE TABLE IF NOT EXISTS {table_name} ({field1}, {field2}, {field3})')
         return self.cur.fetchall()
@@ -42,22 +55,22 @@ class DB:
         return self.cur.fetchall()
 
 
-dbcon = DB('10test.db')   # object of class DB
-create = dbcon.create('news', 'description text', 'location text', 'date_news date')  # call the create method
-insert = dbcon.insert_news('something happened', 'London', '2023-03-23')  # call the insert_news method
-select = dbcon.select('description', 'location', 'date_news', 'news')  # call the select method
-print(select)
+# dbcon = DB('10test.db')   # object of class DB
+# create = dbcon.create('news', 'description text', 'location text', 'date_news date')  # call the create method
+# insert = dbcon.insert_news('something happened', 'London', '2023-03-23')  # call the insert_news method
+# select = dbcon.select('description', 'location', 'date_news', 'news')  # call the select method
+#print(select)
 #print(a[0][0])
 
-create_adv = dbcon.create('advertising', 'description text', 'exp_date date', 'days_left real')  # call the create method
-insert_adv = dbcon.insert_adv('sell the bike', '2023/03/30', 7)  # call the insert_adv method
-select_adv = dbcon.select('description', 'exp_date date', 'days_left', 'advertising')  # call the select method
-print(select_adv)
+# create_adv = dbcon.create('advertising', 'description text', 'exp_date date', 'days_left real')  # call the create method
+# insert_adv = dbcon.insert_adv('sell the bike', '2023/03/30', 7)  # call the insert_adv method
+# select_adv = dbcon.select('description', 'exp_date date', 'days_left', 'advertising')  # call the select method
+# print(select_adv)
 
 
-create_guess = dbcon.create_guess('guess', 'question text', 'answer text')  # call the create method
-insert_guess = dbcon.insert_guess('yes or no?', 'yes')  # call the insert_guess method
-select_guess = dbcon.select_guess('question text', 'answer text', 'guess')  # call the select method
-print(select_guess)
+# create_guess = dbcon.create_guess('guess', 'question text', 'answer text')  # call the create method
+# insert_guess = dbcon.insert_guess('yes or no?', 'yes')  # call the insert_guess method
+# select_guess = dbcon.select_guess('question text', 'answer text', 'guess')  # call the select method
+# print(select_guess)
 
 

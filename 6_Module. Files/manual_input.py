@@ -2,6 +2,7 @@ import datetime
 from locale import normalize
 import random
 import text_statistic as ts
+import database as db
 
 
 class PrintMessage:
@@ -31,6 +32,10 @@ class News:
                   f'{datetime.datetime.now().strftime("%d/%m/%Y %H:%M")}\n' \
                   f'---------------------------------\n\n'
         PrintMessage(normalize(message), self.file_name).print_message()  # call the method to print msg in file
+        dbcon = db.DB('10test.db')  #obj of class DB
+        dbcon.save_news_in_db(self.news_msg, self.location, datetime.datetime.now().strftime("%d/%m/%Y %H:%M"))
+        print(dbcon.select('description', 'location', 'date_news', 'news'))
+
 
 
 class Advertising:
