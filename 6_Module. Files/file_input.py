@@ -3,6 +3,7 @@ import json
 import xml.etree.ElementTree as ET
 from locale import normalize
 from manual_input import PrintMessage
+from database import save_news_to_db, save_adv_to_db, save_guess_to_db
 # sol 2
 
 
@@ -125,6 +126,7 @@ class JSONFile(File):
                               f"{loc}, {dt}\n"\
                               f'---------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print news text info to output file
+                save_news_to_db('10test.db', text, loc, dt) #!!!!!!!!!!!
 
             elif record["type"] == 'adv':
                 #print("Advertising", record)
@@ -136,6 +138,8 @@ class JSONFile(File):
                               f'Actual until: {exp_dt}, {days_l} days left\n' \
                               f'----------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message() # print adv text info to output
+                save_adv_to_db('10test.db', text, exp_dt, days_l)
+
 
             elif record["type"] == 'guess':
                 #print("Guess", record)
@@ -146,6 +150,7 @@ class JSONFile(File):
                               f'Witch\'s answer will be - {ans}\n' \
                               f'----------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message() # print guess text info to output
+                save_guess_to_db('10test.db', text, ans)
 
         print(f'This file {path_for_remove} will be removed now\n')
         os.remove(path_for_remove)  # procecced file is removed
@@ -175,6 +180,7 @@ class XMLFile(File):
                               f"{loc}, {dt}\n" \
                               f'---------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()
+                save_news_to_db('10test.db', text, loc, dt)  # !!!!!!!!!!!
 
             elif record.get('name') == 'adv':
                 text = record.find('text').text
@@ -188,6 +194,7 @@ class XMLFile(File):
                               f'Actual until: {exp_dt}, {days_l} days left\n' \
                               f'----------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()
+                save_adv_to_db('10test.db', text, exp_dt, days_l)
 
             elif record.get('name') == 'guess':
                 text = record.find('text').text
@@ -199,6 +206,7 @@ class XMLFile(File):
                               f'Witch\'s answer will be - {ans}\n' \
                               f'----------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()
+                save_guess_to_db('10test.db', text, ans)
 
         print(f'This file {path_for_remove} will be removed now\n')
         os.remove(path_for_remove)  # procecced file is removed
