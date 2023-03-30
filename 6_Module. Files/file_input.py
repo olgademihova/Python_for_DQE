@@ -101,7 +101,7 @@ class TextFile(File):
         with open(self.output_file_name, "a", encoding='utf-8') as file:  # add new data to output file
             file.writelines(f_contents_new)
         print(f'This file {path_for_remove} will be removed now\n')
-        os.remove(path_for_remove)   # procecced file is removed
+        os.remove(path_for_remove)   # processed file is removed
 
 
 # create child class JSONFile
@@ -126,7 +126,7 @@ class JSONFile(File):
                               f"{loc}, {dt}\n"\
                               f'---------------------------------\n\n'
                 PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print news text info to output file
-                save_news_to_db('10test.db', text, loc, dt) #!!!!!!!!!!!
+                save_news_to_db('10test.db', text, loc, dt)  # call the function to save news data in db
 
             elif record["type"] == 'adv':
                 #print("Advertising", record)
@@ -137,8 +137,8 @@ class JSONFile(File):
                               f'{text}\n' \
                               f'Actual until: {exp_dt}, {days_l} days left\n' \
                               f'----------------------------------\n\n'
-                PrintMessage(normalize(news_record), self.output_file_name).print_message() # print adv text info to output
-                save_adv_to_db('10test.db', text, exp_dt, days_l)
+                PrintMessage(normalize(news_record), self.output_file_name).print_message() # print adv text info to output file
+                save_adv_to_db('10test.db', text, exp_dt, days_l)   # call the function to save adv data in db
 
 
             elif record["type"] == 'guess':
@@ -149,11 +149,11 @@ class JSONFile(File):
                               f'Your question - "{text}",\n' \
                               f'Witch\'s answer will be - {ans}\n' \
                               f'----------------------------------\n\n'
-                PrintMessage(normalize(news_record), self.output_file_name).print_message() # print guess text info to output
-                save_guess_to_db('10test.db', text, ans)
+                PrintMessage(normalize(news_record), self.output_file_name).print_message() # print guess text info to output file
+                save_guess_to_db('10test.db', text, ans)  # call the function to save guess data in db
 
         print(f'This file {path_for_remove} will be removed now\n')
-        os.remove(path_for_remove)  # procecced file is removed
+        os.remove(path_for_remove)  # processed file is removed
 
 
 # create child class XMLFile
@@ -179,8 +179,8 @@ class XMLFile(File):
                               f"{text}\n" \
                               f"{loc}, {dt}\n" \
                               f'---------------------------------\n\n'
-                PrintMessage(normalize(news_record), self.output_file_name).print_message()
-                save_news_to_db('10test.db', text, loc, dt)  # !!!!!!!!!!!
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print news text info to output file
+                save_news_to_db('10test.db', text, loc, dt)  # call the function to save news data in db
 
             elif record.get('name') == 'adv':
                 text = record.find('text').text
@@ -193,8 +193,8 @@ class XMLFile(File):
                               f'{text}\n' \
                               f'Actual until: {exp_dt}, {days_l} days left\n' \
                               f'----------------------------------\n\n'
-                PrintMessage(normalize(news_record), self.output_file_name).print_message()
-                save_adv_to_db('10test.db', text, exp_dt, days_l)
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print adv text info to output file
+                save_adv_to_db('10test.db', text, exp_dt, days_l)  # call the function to save adv data in db
 
             elif record.get('name') == 'guess':
                 text = record.find('text').text
@@ -205,11 +205,11 @@ class XMLFile(File):
                               f'Your question - "{text}",\n' \
                               f'Witch\'s answer will be - {ans}\n' \
                               f'----------------------------------\n\n'
-                PrintMessage(normalize(news_record), self.output_file_name).print_message()
-                save_guess_to_db('10test.db', text, ans)
+                PrintMessage(normalize(news_record), self.output_file_name).print_message()  # print guess text info to output file
+                save_guess_to_db('10test.db', text, ans)  # call the function to save guess data in db
 
         print(f'This file {path_for_remove} will be removed now\n')
-        os.remove(path_for_remove)  # procecced file is removed
+        os.remove(path_for_remove)  # processed file is removed
 
 
 

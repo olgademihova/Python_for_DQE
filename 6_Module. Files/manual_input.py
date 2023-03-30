@@ -79,7 +79,7 @@ def add_news(file_name):  # add file_name
     news = News(text, location, file_name)  # create an object with params
     news.news_message()  # call the method of News class
     # print(news.news_msg, news.location, news.date_news)
-    save_news_to_db('10test.db', news.news_msg, news.location, news.date_news)
+    save_news_to_db('10test.db', news.news_msg, news.location, news.date_news)  # call the function to save news to db
 
 
 #create a function for user input text and exp date
@@ -88,7 +88,7 @@ def add_adv(file_name):  # add file_name
     exp_dt = input('Please enter expire date in the format dd/mm/yyyy:\n')
     adv = Advertising(text, exp_dt, file_name)  # create an object with params
     adv.advertising()  # call the method of Advertising class
-    save_adv_to_db('10test.db', adv.adv_message, adv.expired_dt, adv.adv_days_left)
+    save_adv_to_db('10test.db', adv.adv_message, adv.expired_dt, adv.adv_days_left)  # call the function to save adv to db
 
 
 #create a function for user input text
@@ -96,7 +96,7 @@ def add_guess(file_name):  # add file_name
     guessing = input('Ask me about your near future:\n')
     guess = Guess(guessing, file_name)  # create an object with params
     guess.ask_future()  # call the method of Guess class
-    save_guess_to_db('10test.db', guess.guessing, guess.ans)
+    save_guess_to_db('10test.db', guess.guessing, guess.ans)  # call the function to save guess to db
 
 
 
